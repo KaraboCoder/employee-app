@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query, Patch, Delete } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Patch, Delete, Put } from '@nestjs/common';
 import { EmployeeDto } from './dtos/employee.dto';
 import { EmployeesService } from './employees.service';
 import { ToLowerCasePipe } from './pipes/to-lowercase.pipe';
@@ -22,7 +22,7 @@ export class EmployeesController {
         return this.employeesService.create(createEployeeDto)
     }
 
-    @Patch(':id')
+    @Put(':id')
     updateEmployee(@Param('id') id: string, @Body() updateEmployeeDto: EmployeeDto) {
         return this.employeesService.update(id, updateEmployeeDto)
     }
