@@ -8,27 +8,27 @@ export class EmployeesController {
     constructor(private employeesService: EmployeesService) { }
 
     @Get()
-    findAllEmployees(): EmployeeDto[] {
+    async findAllEmployees(): Promise<EmployeeDto[]> {
         return this.employeesService.findAll()
     }
 
     @Get('/search')
-    searchEmployees(@Query('query', ToLowerCasePipe) query: string): EmployeeDto[] {
+    async searchEmployees(@Query('query', ToLowerCasePipe) query: string): Promise<EmployeeDto[]> {
         return this.employeesService.search(query)
     }
 
     @Post()
-    createEmployee(@Body() createEployeeDto: EmployeeDto) {
-        return this.employeesService.create(createEployeeDto)
+    async createEmployee(@Body() createEmployeeDto: EmployeeDto): Promise<EmployeeDto> {
+        return this.employeesService.create(createEmployeeDto)
     }
 
     @Put(':id')
-    updateEmployee(@Param('id') id: string, @Body() updateEmployeeDto: EmployeeDto) {
+    async updateEmployee(@Param('id') id: string, @Body() updateEmployeeDto: EmployeeDto): Promise<EmployeeDto> {
         return this.employeesService.update(id, updateEmployeeDto)
     }
 
     @Delete(':id')
-    deleteEmployee(@Param('id') id: string) {
+    async deleteEmployee(@Param('id') id: string): Promise<EmployeeDto> {
         return this.employeesService.delete(id)
     }
 }

@@ -1,52 +1,47 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { generateId } from 'src/utils/id-generator';
 import { EmployeeDto } from './dtos/employee.dto';
-import { Employee } from './types/Employee';
+import { EmployeesRepository } from './employees.repository';
+import { Employee } from './schemas/employee.schema';
+// import escapeStringRegexp from 'escape-string-regexp';
 
 @Injectable()
 export class EmployeesService {
-    private employees: Employee[] = [];
 
-    create(employeeDto: EmployeeDto) {
-        employeeDto.id = generateId()
+    constructor(private readonly employeesRepository: EmployeesRepository) { }
+
+    async create(employeeDto: EmployeeDto): Promise<Employee> {
+        employeeDto._id = generateId()
         console.log(employeeDto)
-        this.employees.push(employeeDto)
+        return this.employeesRepository.create(employeeDto)
     }
 
-    findAll() {
-        return this.employees
+    async findAll(): Promise<Employee[]> {
+        return this.employeesRepository.findAll()
     }
 
-    findById(id: string) {
-        return this.employees.filter((employee) => employee.id === id)
+    async findById(id: string): Promise<Employee> {
+        return this.employeesRepository.findOne({ _id: id })
     }
 
-    search(query: string) {
-        console.log(query)
-        return this.employees.filter(
-            (employee) => employee.firstName.toLowerCase().includes(query) || employee.lastName.toLowerCase().includes(query) || employee.email.toLowerCase().includes(query))
+    async search(query: string): Promise<Employee[]> {
+        const sanitizedQuery = query
+
+        return this.employeesRepository.find({
+            $or: [
+                { firstName: { $regex: sanitizedQuery, $options: 'i' } },
+                { lastName: { $regex: sanitizedQuery, $options: 'i' } },
+                { email: { $regex: sanitizedQuery, $options: 'i' } }
+            ]
+        })
     }
 
-    update(id: string, updateEmployeeDto: EmployeeDto) {
-        if (this.findById(id).length === 1) {
-            this.employees = this.employees.map((emp) => {
-                if (emp.id === id) {
-                    return { ...emp, ...updateEmployeeDto }
-                } else {
-                    return emp
-                }
-            })
-        } else {
-            throw new HttpException("Bad request", HttpStatus.BAD_REQUEST)
-        }
+    async update(id: string, updateEmployeeDto: EmployeeDto): Promise<Employee> {
+        return this.employeesRepository.findOnAndUpdate({ _id: id }, updateEmployeeDto)
     }
 
-    delete(id: string) {
-        if (this.findById(id).length === 1) {
-            this.employees = this.employees.filter((employee) => employee.id !== id)
-        } else {
-            throw new HttpException("Bad request", HttpStatus.BAD_REQUEST)
-        }
+    async delete(id: string): Promise<Employee> {
+        return this.employeesRepository.deleteOne(id)
     }
 
 }

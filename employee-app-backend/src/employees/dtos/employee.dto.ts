@@ -1,13 +1,12 @@
-import { AddressDto } from "./address.dto";
-import { SkillDto } from "./skill.dto";
-
+import { Address } from "../types/Address";
+import { Skill } from "../types/Skill";
 export class EmployeeDto {
-    id: string;
+    _id: string;
     firstName: string;
     lastName: string;
     contactNumber: string;
     email: string;
     dateOfBirth: string;
-    address: AddressDto;
-    skills: SkillDto[]
+    address: Address;
+    skills: Skill[];
 }
