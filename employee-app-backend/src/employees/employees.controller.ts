@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Param, Post, Query, Patch, Delete, Put } from '@nestjs/common';
 import { EmployeeDto } from './dtos/employee.dto';
 import { EmployeesService } from './employees.service';
-import { ToLowerCasePipe } from './pipes/to-lowercase.pipe';
 
 @Controller('employees')
 export class EmployeesController {
@@ -13,8 +12,8 @@ export class EmployeesController {
     }
 
     @Get('/search')
-    async searchEmployees(@Query('query', ToLowerCasePipe) query: string): Promise<EmployeeDto[]> {
-        return this.employeesService.search(query)
+    async searchEmployees(@Query('query') query: string, @Query('year') year: string, @Query('skills') skills: string): Promise<EmployeeDto[]> {
+        return this.employeesService.search(query, year, skills)
     }
 
     @Post()

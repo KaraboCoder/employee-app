@@ -12,7 +12,6 @@ export class EmployeesService {
 
     async create(employeeDto: EmployeeDto): Promise<Employee> {
         employeeDto._id = generateId()
-        console.log(employeeDto)
         return this.employeesRepository.create(employeeDto)
     }
 
@@ -24,16 +23,37 @@ export class EmployeesService {
         return this.employeesRepository.findOne({ _id: id })
     }
 
-    async search(query: string): Promise<Employee[]> {
-        const sanitizedQuery = query
+    async search(query: string, year: string, skills: string): Promise<Employee[]> {
+        let searchQuery = {}
 
-        return this.employeesRepository.find({
-            $or: [
-                { firstName: { $regex: sanitizedQuery, $options: 'i' } },
-                { lastName: { $regex: sanitizedQuery, $options: 'i' } },
-                { email: { $regex: sanitizedQuery, $options: 'i' } }
-            ]
-        })
+        /*
+         * Building a query for searching the DB
+         */
+        if (query) {
+            searchQuery["$or"] =
+                [
+                    { firstName: { $regex: query, $options: 'i' } },
+                    { lastName: { $regex: query, $options: 'i' } },
+                    { email: { $regex: '^' + query + '$', $options: 'i' } }
+                ]
+        }
+
+        if (year) {
+            searchQuery["$and"] = [{ dateOfBirth: { $regex: year } }]
+        }
+
+        if (skills) {
+            const skills_regx = skills.split(',').map((skill) => (new RegExp('^' + skill + '$', 'i')))
+            if (typeof searchQuery["$and"] === 'object') {
+
+                searchQuery["$and"].push({ 'skills.title': { $all: skills_regx } })
+            }
+            else {
+                searchQuery["$and"] = [{ 'skills.title': { $all: skills_regx } }]
+            }
+        }
+
+        return this.employeesRepository.find(searchQuery)
     }
 
     async update(id: string, updateEmployeeDto: EmployeeDto): Promise<Employee> {

@@ -1,5 +1,5 @@
-import { Address } from "../types/Address";
-import { Skill } from "../types/Skill";
+import { Address } from "../types/address";
+import { Skill } from "../types/skill";
 export class EmployeeDto {
     _id: string;
     firstName: string;
