@@ -1,0 +1,22 @@
+.employees-list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.employees-list .empty-state {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.employees-list .empty-state img {
+    width: 80%;
+}
+
+.employees-list .empty-state .message {
+    max-width: 280px;
+}

@@ -1,0 +1,59 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.header .header-content {
+    width: 620px;
+    padding: 40px 0;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header .header-content .logo p {
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0px;
+}
+
+.header .header-content .logo span {
+    font-size: 13px;
+    display: block;
+    padding-top: 5px;
+}
+
+.create-new-employee-btn-wrapper button {
+    outline: none;
+    background-color: #6f319c;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    height: 30px;
+    padding: 0px 10px 0px 5px;
+    width: 130px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: navajowhite;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+.create-new-employee-btn-wrapper button:hover {
+    opacity: 0.8;
+}
+
+.create-new-employee-btn-wrapper button .btn-icon {
+    display: block;
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: #6f319c;
+    line-height: 20px;
+    font-size: 18px;
+}

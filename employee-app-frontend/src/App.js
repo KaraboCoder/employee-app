@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useReducer } from 'react';
+import { AppContext } from './context'
+import reducer from './reducer';
+import initialState from './state';
+import './styles/App.css';
+import { getAllEmployees } from './actions';
+import { Header, Loading } from './components';
+import EmployeesList from './components/Employees/EmployeesList';
+
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  useEffect(() => {
+
+    getAllEmployees(dispatch)
+    //searchEmployees(dispatch, 'karabo', { year: '1996', skills: 'css3,javascript' })
+
+  }, [])
+
+  console.log(state)
+  const { employees, loading } = state
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider value={{ state, dispatch }}>
+      <div className="App">
+        <Header />
+        {
+          !loading && <EmployeesList list={employees} dispatch={dispatch} />
+        }
+        {
+          loading && <Loading />
+        }
+      </div>
+    </AppContext.Provider>
   );
 }
 

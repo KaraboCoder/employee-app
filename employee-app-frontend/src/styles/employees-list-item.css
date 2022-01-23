@@ -1,0 +1,36 @@
+.employees-list-item {
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    background-color: #767070;
+    color: #fff;
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 15px;
+    max-width: 600px;
+    cursor: pointer;
+}
+
+.employees-list-item:hover {
+    background-color: #645f5f;
+}
+
+.employees-list-item span {
+    display: block;
+    color: #6e2fa2;
+    height: 25px;
+    width: 25px;
+    border: 2px solid;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.employees-list-item p {
+    padding-left: 15px;
+    min-width: 80px;
+}
