@@ -1,29 +1,22 @@
 import { fetchAllEmployees, search } from "../services";
-import { APPLY_FILTERS, CLEAR_FILTERS, SET_EMPLOYEES, SEARCH, SET_LOADING, TOGGLE_FILTERS_DROPDOWN } from "./actionTypes";
+import { APPLY_FILTERS, SET_EMPLOYEES, SEARCH, SET_LOADING, TOGGLE_FILTERS_DROPDOWN } from "./actionTypes";
 
 
 export const setLoading = (dispatch, payload) => {
     dispatch({ type: SET_LOADING, payload })
 }
 
-export const applyFilter = (filters) => ({
-    payload: { filters },
-    type: APPLY_FILTERS
-})
+export const applyFilters = (dispatch, searchString, filters) => {
+    dispatch({
+        payload: { filters },
+        type: APPLY_FILTERS
+    })
+    searchEmployees(dispatch, searchString, filters)
+}
 
-export const clearFilters = () => ({
-    payload: {
-        filters: {
-            skills: "",
-            year: ""
-        }
-    },
-    type: CLEAR_FILTERS
-})
-
-export const toggleFiltersDropDown = () => ({
-    type: TOGGLE_FILTERS_DROPDOWN
-})
+export const toggleFiltersDropDown = (dispatch) => {
+    dispatch({ type: TOGGLE_FILTERS_DROPDOWN })
+}
 
 export const searchEmployees = (dispatch, searchString, filters = {}) => {
     setLoading(dispatch, true)
@@ -54,7 +47,6 @@ export const getAllEmployees = (dispatch) => {
 
 export {
     APPLY_FILTERS,
-    CLEAR_FILTERS,
     SEARCH,
     TOGGLE_FILTERS_DROPDOWN,
     SET_EMPLOYEES

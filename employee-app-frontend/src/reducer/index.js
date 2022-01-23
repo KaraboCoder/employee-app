@@ -1,16 +1,10 @@
-import { APPLY_FILTERS, CLEAR_FILTERS, SET_EMPLOYEES, SEARCH, TOGGLE_FILTERS_DROPDOWN } from "../actions";
+import { APPLY_FILTERS, SET_EMPLOYEES, SEARCH, TOGGLE_FILTERS_DROPDOWN } from "../actions";
 import { SET_LOADING } from "../actions/actionTypes";
 import initialState from "../state"
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case APPLY_FILTERS:
-            return {
-                ...state,
-                ...action.payload
-            }
-
-        case CLEAR_FILTERS:
             return {
                 ...state,
                 ...action.payload

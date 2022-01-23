@@ -14,7 +14,6 @@ function App() {
   useEffect(() => {
 
     getAllEmployees(dispatch)
-    //searchEmployees(dispatch, 'karabo', { year: '1996', skills: 'css3,javascript' })
 
   }, [])
 

@@ -5,6 +5,7 @@ const initialState = {
     },
     employees: [],
     loading: false,
+    filtersDropDownState: false
 }
 
 export default initialState

@@ -57,3 +57,29 @@
     line-height: 20px;
     font-size: 18px;
 }
+
+.header .header-content .search-field {
+    flex: 1;
+    margin: 0 30px;
+}
+
+.header .header-content .search-field input {
+    outline: none;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background-color: inherit;
+    color: #fff;
+    padding: 8px;
+}
+
+.header .header-content .filter-wrapper {
+    height: 20px;
+    z-index: 1;
+    position: relative;
+    width: 100px;
+}
+
+.header .header-content .filter-wrapper span {
+    cursor: pointer;
+}
