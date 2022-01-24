@@ -5,7 +5,10 @@ const initialState = {
     },
     employees: [],
     loading: false,
-    filtersDropDownState: false
+    filtersDropDownState: false,
+    employeesEditFormOpenState: false,
+    editFormIntent: "",
+    employeeUpdating: null
 }
 
 export default initialState

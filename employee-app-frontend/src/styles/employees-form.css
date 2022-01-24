@@ -1,0 +1,123 @@
+.employees-form {
+    display: none;
+}
+
+.employees-form.open {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #00000075;
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 13px;
+}
+
+.employees-form .employees-form-content {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: auto;
+    background: #242237;
+    border-radius: 10px;
+    padding: 20px;
+
+}
+
+.employees-form .employees-form-content .heading {
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.employees-form .employees-form-content .sub-heading {
+    font-weight: 500;
+    color: #b776e7;
+}
+
+.employees-form .employees-form-content .form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.employees-form .employees-form-content .form-group>div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.employees-form .employees-form-content .form-group>div input {
+    background-color: #c5c5c5;
+    border: none;
+    height: 19px;
+    color: #000;
+    padding: 2px 5px;
+}
+
+.employees-form .employees-form-content .form-group>div label {
+    padding: 5px 0;
+}
+
+.max-w-200 {
+    max-width: 200px;
+}
+
+.employees-form .employees-form-content .form-group>div:not(:first-child) {
+    margin-left: 2px;
+}
+
+.employees-form .employees-form-content .form-group .grid {
+    display: flex;
+    flex-direction: row !important;
+    text-align: left;
+}
+
+.employees-form .employees-form-content .form-group.block {
+    display: block;
+}
+
+.employees-form .employees-form-content .form-group .grid .grid-item {
+    flex: 1;
+}
+
+.employees-form .employees-form-content .controls {
+    margin-top: auto;
+    display: flex;
+    justify-content: end;
+    padding-top: 15px;
+}
+
+.employees-form .employees-form-content .controls button {
+    outline: none;
+    font-size: 12px;
+    font-weight: 600;
+    height: 30px;
+    padding: 0px 10px 0px 5px;
+    width: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: navajowhite;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.employees-form .employees-form-content .controls button.cancel {}
+
+.employees-form .employees-form-content .controls button.delete {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.employees-form .employees-form-content .controls button.save {
+    background-color: #6f319c;
+    color: #fff;
+}

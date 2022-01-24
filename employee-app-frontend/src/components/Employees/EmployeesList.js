@@ -1,4 +1,4 @@
-import EmployeesListItem from "./EmployeesListItem"
+import { EmployeesListItem } from "../"
 import '../../styles/employees-list.css'
 import emptyStateIcon from '../../assests/Icon.JPG'
 

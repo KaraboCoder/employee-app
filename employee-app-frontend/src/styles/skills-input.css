@@ -1,0 +1,23 @@
+.skills-grid {
+    display: flex;
+    flex-direction: row !important;
+    text-align: left;
+    margin-bottom: 2px;
+    margin-left: 0px !important;
+}
+
+.skills-grid .skills-grid-item {
+    flex: 1;
+}
+
+.skills-grid .skills-grid-item:not(:first-child) {
+    margin-left: 2px;
+}
+
+.flex {
+    display: flex;
+}
+
+.select-input {
+    flex: 1;
+}

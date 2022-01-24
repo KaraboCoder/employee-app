@@ -4,8 +4,7 @@ import reducer from './reducer';
 import initialState from './state';
 import './styles/App.css';
 import { getAllEmployees } from './actions';
-import { Header, Loading } from './components';
-import EmployeesList from './components/Employees/EmployeesList';
+import { Header, Loading, EmployeesList, EmployeesForm } from './components';
 
 
 function App() {
@@ -29,6 +28,7 @@ function App() {
         {
           loading && <Loading />
         }
+        <EmployeesForm />
       </div>
     </AppContext.Provider>
   );

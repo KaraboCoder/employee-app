@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import { Filter } from "."
-import { searchEmployees, toggleFiltersDropDown } from "../actions"
+import { openEmployeesEditForm, searchEmployees, toggleFiltersDropDown } from "../actions"
+import { EMPLOYEE_EDIT_FORM_INTENTS } from "../constants"
 import { AppContext } from "../context"
 import '../styles/header.css'
 
@@ -38,13 +39,19 @@ const Header = () => {
         toggleFiltersDropDown(dispatch)
     }
 
+    const onClickCreateEmployee = () => {
+        openEmployeesEditForm(dispatch, EMPLOYEE_EDIT_FORM_INTENTS.CREATE_EMPLOYEE)
+    }
+
     const { employees, filtersDropDownState } = state
+    const subTitle = employees.length > 0 ? `There are ${employees.length} employees` : 'No employees'
+
     return (
         <div className="header">
             <div className="header-content">
                 <div className="logo">
                     <p>Employees</p>
-                    <span>{`There are ${employees.length} employees`}</span>
+                    <span>{subTitle}</span>
                 </div>
                 <div className="search-field">
                     <input value={searchInputText} onChange={(e) => onSearchInput(e.target.value)} placeholder="Search" type="text" />
@@ -54,7 +61,7 @@ const Header = () => {
                     <Filter searchString={searchInputText} onFiltersChange={onFiltersChange} dispatch={dispatch} show={filtersDropDownState} />
                 </div>
                 <div className="create-new-employee-btn-wrapper">
-                    <button>
+                    <button onClick={onClickCreateEmployee}>
                         <span className="btn-icon">+</span>
                         <span className="btn-text">New Employee</span>
                     </button>
