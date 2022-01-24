@@ -19,6 +19,10 @@ const Filter = ({ searchString, onFiltersChange, dispatch, show }) => {
         setSkills(skills.filter((_, i) => i !== index))
     }
 
+    /**
+     * Called when user clicks "apply" button
+     * API request is made to search using the filters
+     */
     const onApplyFilters = () => {
         applyFilters(dispatch, searchString, { year: dateOfBirth, skills: skills.join(",") })
     }
@@ -33,6 +37,7 @@ const Filter = ({ searchString, onFiltersChange, dispatch, show }) => {
     const onClose = () => {
         toggleFiltersDropDown(dispatch)
     }
+
     return (
         <div className={`filter ${!show ? 'hide' : ''}`}>
             <div>

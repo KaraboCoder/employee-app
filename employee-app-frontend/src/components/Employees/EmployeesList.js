@@ -3,7 +3,6 @@ import '../../styles/employees-list.css'
 import emptyStateIcon from '../../assests/Icon.JPG'
 
 const EmployeesList = ({ list, dispatch }) => {
-    console.log(list)
 
     return (
         <div className="employees-list">

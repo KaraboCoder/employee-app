@@ -1,6 +1,9 @@
 import { SENIORITY_LEVELS } from '../../constants'
 import '../../styles/skills-input.css'
 
+/**
+ * Component with input fields for entering a new skill on the create employee form
+ */
 const SkillsInputs = ({ index, value, onChange, removeSkill }) => {
     return (
         <div className='skills-grid'>

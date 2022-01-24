@@ -3,6 +3,10 @@ import { EMPLOYEE_EDIT_FORM_INTENTS } from '../../constants'
 import '../../styles/employees-list-item.css'
 
 const EmployeesListItem = ({ item, index, dispatch }) => {
+
+    /**
+     * When you click the list item the Update Employee form is opened
+     */
     const onOpenUpdateEmployee = () => {
         openEmployeesEditForm(dispatch, EMPLOYEE_EDIT_FORM_INTENTS.UPDATE_EMPLOYEE, item)
     }

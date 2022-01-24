@@ -10,7 +10,10 @@ const EmployeesForm = () => {
     const { employeesEditFormOpenState, editFormIntent, employeeUpdating } = state
     const [formData, setFormData] = useState(EMPTY_FORM_DATA)
 
-
+    /**
+     * If form is opened by clicking employee we set the initial state to the employee details
+     * But if the form is opened by click the create new employee button we set the state to empty fields
+     */
     useEffect(() => {
         if (EMPLOYEE_EDIT_FORM_INTENTS.UPDATE_EMPLOYEE === editFormIntent) {
             setFormData(employeeUpdating)
@@ -39,6 +42,10 @@ const EmployeesForm = () => {
         setFormData({ ...formData, skills: skillsTemp })
     }
 
+    /**
+     * When you update skill information this method is called with the index of the skill
+     * The specific skill is updated in the skills array
+     */
     const onSkillChange = (index, event) => {
         let skillsTemp = [...formData.skills]
         skillsTemp[index][event.target.name] = event.target.value
@@ -51,6 +58,10 @@ const EmployeesForm = () => {
         setFormData({ ...formData, skills: skillsTemp })
     }
 
+    /**
+     * This is an event handler for the form
+     * When the form is submitted we check how the form was opened and then call the corresponding endpoint
+     */
     const onFormSubmit = (event) => {
         event.preventDefault()
 
@@ -71,6 +82,9 @@ const EmployeesForm = () => {
         onCloseEmployeesForm()
     }
 
+    /**
+     * Unlike onSkillChange, this method handles changes in the other form fields
+     */
     const onFormInputChange = (event) => {
         let formDataTemp = { ...formData }
         if (
