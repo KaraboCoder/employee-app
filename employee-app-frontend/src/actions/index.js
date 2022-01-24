@@ -1,4 +1,4 @@
-import { create, deleteEmployee, fetchAllEmployees, search } from "../services";
+import { create, deleteEmployee, fetchAllEmployees, search, update } from "../services";
 import {
     APPLY_FILTERS,
     SET_EMPLOYEES,
@@ -68,6 +68,17 @@ export const createNewEmployee = (dispatch, formData) => {
     create(formData).then((employee) => {
         dispatch({ type: NEW_EMPLOYEE, payload: employee })
         setLoading(dispatch, false)
+    }).catch((e) => {
+        console.log(e)
+        setLoading(dispatch, false)
+    })
+}
+
+export const updateNewEmployee = (dispatch, formData, employeeId) => {
+    setLoading(dispatch, true)
+
+    update(formData, employeeId).then(() => {
+        getAllEmployees(dispatch)
     }).catch((e) => {
         console.log(e)
         setLoading(dispatch, false)

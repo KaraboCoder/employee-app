@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { closeEmployeesEditForm, createNewEmployee, deleteEmployee_ } from '../../actions'
+import { closeEmployeesEditForm, createNewEmployee, deleteEmployee_, updateNewEmployee } from '../../actions'
 import { EMPLOYEE_EDIT_FORM_INTENTS, EMPTY_FORM_DATA } from '../../constants'
 import { SkillsInputs } from '../'
 import { AppContext } from '../../context'
@@ -7,7 +7,7 @@ import '../../styles/employees-form.css'
 
 const EmployeesForm = () => {
     const { state, dispatch } = useContext(AppContext)
-    const { employeesEditFormOpenState, loading, editFormIntent, employeeUpdating } = state
+    const { employeesEditFormOpenState, editFormIntent, employeeUpdating } = state
     const [formData, setFormData] = useState(EMPTY_FORM_DATA)
 
 
@@ -54,10 +54,16 @@ const EmployeesForm = () => {
     const onFormSubmit = (event) => {
         event.preventDefault()
 
-        if (EMPLOYEE_EDIT_FORM_INTENTS.CREATE_EMPLOYEE) {
+        if (EMPLOYEE_EDIT_FORM_INTENTS.CREATE_EMPLOYEE === editFormIntent) {
             createNewEmployee(dispatch, formData)
             onCloseEmployeesForm()
         }
+
+        if (EMPLOYEE_EDIT_FORM_INTENTS.UPDATE_EMPLOYEE === editFormIntent) {
+            updateNewEmployee(dispatch, formData, employeeUpdating._id)
+            onCloseEmployeesForm()
+        }
+
     }
 
     const onDeleteEmployee = () => {
